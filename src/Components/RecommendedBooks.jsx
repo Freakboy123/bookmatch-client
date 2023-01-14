@@ -88,6 +88,7 @@ const RecommendedBooks = () => {
       console.log(recommendedStorage);
       setRecommended(recommendedStorage);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleCloseClick = () => {
     document.body.style.overflowY = "auto";
