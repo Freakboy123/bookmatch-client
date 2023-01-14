@@ -39,7 +39,7 @@ const Quiz = () => {
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            setRecommended(data);
+            // setRecommended(data);
             setSuggestions([]);
             localStorage.setItem("books", JSON.stringify(data["books"]));
             localStorage.setItem("user", JSON.stringify(data["user"]));
