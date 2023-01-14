@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRef, useState, useContext } from "react";
 import "./Quiz.css";
-import { RecommendationsContext, UserContext } from "../App";
+import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
