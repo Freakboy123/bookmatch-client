@@ -24,6 +24,12 @@ function App() {
     if (recommendedStorage) {
       console.log(recommendedStorage);
       setRecommended(recommendedStorage);
+    } else {
+      fetch("https://bookmatch.pythonanywhere.com/random")
+        .then((res) => res.json())
+        .then((data) => {
+          setRecommended(data);
+        });
     }
     const savedListStorage = JSON.parse(localStorage.getItem("savedList"));
     if (savedListStorage) {
