@@ -1,0 +1,8 @@
+#home {
+  background: rgb(240, 238, 235);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 238, 235, 1) 65%,
+    rgba(251, 244, 217, 1) 99%
+  );
+}
