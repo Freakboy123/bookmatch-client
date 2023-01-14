@@ -8,7 +8,6 @@ const Quiz = () => {
   const likes = [];
   const [user] = useContext(UserContext);
   const navigate = useNavigate();
-  const [setRecommended] = useContext(RecommendationsContext);
   const [suggestions, setSuggestions] = useState([]);
   useEffect(() => {
     const requestOptions = {
