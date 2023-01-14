@@ -8,7 +8,7 @@ const Quiz = () => {
   const likes = [];
   const [user] = useContext(UserContext);
   const navigate = useNavigate();
-  const [recommended, setRecommended] = useContext(RecommendationsContext);
+  const [setRecommended] = useContext(RecommendationsContext);
   const [suggestions, setSuggestions] = useState([]);
   useEffect(() => {
     const requestOptions = {
@@ -19,6 +19,7 @@ const Quiz = () => {
     fetch("https://bookmatch.pythonanywhere.com/suggest", requestOptions)
       .then((response) => response.json())
       .then((data) => setSuggestions(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const BookModel = ({ book, idx }) => {
     const bookCard = useRef(null);
