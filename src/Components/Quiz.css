@@ -1,0 +1,85 @@
+#quiz {
+  background: rgb(240, 238, 235);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 238, 235, 1) 65%,
+    rgba(251, 244, 217, 1) 99%
+  );
+}
+
+.bookTranslateLeft {
+  animation: moveLeft 2s linear forwards;
+}
+.bookTranslateRight {
+  animation: moveRight 2s linear forwards;
+}
+
+@keyframes moveRight {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 10000px;
+    display: none;
+  }
+}
+@keyframes moveLeft {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100000px;
+    display: none;
+  }
+}
+
+#quiz2 {
+  background: rgb(240, 238, 235);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 238, 235, 1) 65%,
+    rgba(251, 244, 217, 1) 99%
+  );
+  overflow: hidden;
+}
+
+.fade {
+  opacity: 1;
+  background: rgb(240, 238, 235);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 238, 235, 1) 65%,
+    rgba(251, 244, 217, 1) 99%
+  );
+}
+.elementToFadeIn {
+  animation: fadeIn 0.5s linear forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.elementToFadeInAndOut {
+  animation: fadeOut 0.5s linear forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.box-model {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  top: 0;
+}

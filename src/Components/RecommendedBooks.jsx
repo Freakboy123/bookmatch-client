@@ -1,7 +1,8 @@
 import BookCard from "./BookCard";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import "./SavedList.css";
 import { SavedListContext } from "../App";
+import { RecommendationsContext } from "../App";
 
 const BookPopup = ({ book }) => {
   const [savedList, setSavedList] = useContext(SavedListContext);
@@ -14,8 +15,13 @@ const BookPopup = ({ book }) => {
       }
     }
     setSavedList([...savedList, book]);
+
     alert("Book Added!");
   };
+  useEffect(() => {
+    console.log(savedList);
+    localStorage.setItem("savedList", JSON.stringify(savedList));
+  }, [savedList]);
   if (book) {
     return (
       <div className="font-Outfit pb-5 ">
@@ -33,6 +39,10 @@ const BookPopup = ({ book }) => {
             <div>{book.average_rating}/5</div>
             <div className="font-light pt-10">{book.description}</div>
             <div className="flex flex-col w-full p-5">
+              <div className=" flex justify-between">
+                <div>Categories</div>
+                <div>{book.categories}</div>
+              </div>
               <div className=" flex justify-between">
                 <div>ISBN</div>
                 <div>{book.isbn13}</div>
@@ -69,86 +79,16 @@ const BookPopup = ({ book }) => {
 };
 
 const RecommendedBooks = () => {
-  const book = [
-    {
-      authors: "Agatha Christie",
-      average_rating: 4.27,
-      categories: "Authors, English",
-      description:
-        "An Autobiography is the title of the recollections of crime writer Agatha Christie published posthumously by Collins in the UK and by Dodd, Mead & Company in the US in November 1977, almost two years after the writer's death in January 1976. The UK edition retailed at £7.95 and the US edition at $15.00.",
-      isbn10: "0006353282",
-      isbn13: 9780006353287,
-      num_pages: 560.0,
-      published_year: 1977.0,
-      ratings_count: 3975.0,
-      thumbnail:
-        "http://books.google.com/books/content?id=c49GQwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      title: "An Autobiography",
-    },
-    {
-      authors: "Agatha Christie",
-      average_rating: 4.27,
-      categories: "Authors, English",
-      description:
-        "An Autobiography is the title of the recollections of crime writer Agatha Christie published posthumously by Collins in the UK and by Dodd, Mead & Company in the US in November 1977, almost two years after the writer's death in January 1976. The UK edition retailed at £7.95 and the US edition at $15.00.",
-      isbn10: "0006353282",
-      isbn13: 9780006353287,
-      num_pages: 560.0,
-      published_year: 1977.0,
-      ratings_count: 3975.0,
-      thumbnail:
-        "http://books.google.com/books/content?id=c49GQwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      title: "An Autobiography",
-    },
-    {
-      authors: "Agatha Christie",
-      average_rating: 4.27,
-      categories: "Authors, English",
-      description:
-        "An Autobiography is the title of the recollections of crime writer Agatha Christie published posthumously by Collins in the UK and by Dodd, Mead & Company in the US in November 1977, almost two years after the writer's death in January 1976. The UK edition retailed at £7.95 and the US edition at $15.00.",
-      isbn10: "0006353282",
-      isbn13: 9780006353287,
-      num_pages: 560.0,
-      published_year: 1977.0,
-      ratings_count: 3975.0,
-      thumbnail:
-        "http://books.google.com/books/content?id=c49GQwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      title: "An Autobiography",
-    },
-    {
-      authors: "Agatha Christie",
-      average_rating: 4.27,
-      categories: "Authors, English",
-      description:
-        "An Autobiography is the title of the recollections of crime writer Agatha Christie published posthumously by Collins in the UK and by Dodd, Mead & Company in the US in November 1977, almost two years after the writer's death in January 1976. The UK edition retailed at £7.95 and the US edition at $15.00.",
-      isbn10: "0006353282",
-      isbn13: 9780006353287,
-      num_pages: 560.0,
-      published_year: 1977.0,
-      ratings_count: 3975.0,
-      thumbnail:
-        "http://books.google.com/books/content?id=c49GQwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      title: "An Autobiography",
-    },
-    {
-      authors: "Agatha Christie",
-      average_rating: 4.27,
-      categories: "Authors, English",
-      description:
-        "An Autobiography is the title of the recollections of crime writer Agatha Christie published posthumously by Collins in the UK and by Dodd, Mead & Company in the US in November 1977, almost two years after the writer's death in January 1976. The UK edition retailed at £7.95 and the US edition at $15.00.",
-      isbn10: "0006353282",
-      isbn13: 9780006353287,
-      num_pages: 560.0,
-      published_year: 1977.0,
-      ratings_count: 3975.0,
-      thumbnail:
-        "http://books.google.com/books/content?id=c49GQwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-      title: "An Autobiography",
-    },
-  ];
-  const savedBooksList = [];
+  const [recommended, setRecommended] = useContext(RecommendationsContext);
   const popupControl = useRef(null);
   const [bookOpened, setBookOpened] = useState(null);
+  useEffect(() => {
+    const recommendedStorage = JSON.parse(localStorage.getItem("books"));
+    if (recommendedStorage) {
+      console.log(recommendedStorage);
+      setRecommended(recommendedStorage);
+    }
+  }, []);
   const handleCloseClick = () => {
     document.body.style.overflowY = "auto";
     popupControl.current.style.display = "none";
@@ -167,12 +107,12 @@ const RecommendedBooks = () => {
       </h2>
       <div
         className={
-          book.length &&
+          recommended.length &&
           "projects-section pl-10 grid grid-cols-4 gap-4 gap-y-[30px]"
         }
       >
-        {book.length ? (
-          book.map((book) => {
+        {recommended.length ? (
+          recommended.map((book) => {
             return (
               <BookCard
                 book={book}

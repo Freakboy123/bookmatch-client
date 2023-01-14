@@ -22,6 +22,10 @@ const BookPopup = ({ book }) => {
             <div className="font-light pt-10">{book.description}</div>
             <div className="flex flex-col w-full p-5">
               <div className=" flex justify-between">
+                <div>Categories</div>
+                <div>{book.categories}</div>
+              </div>
+              <div className=" flex justify-between">
                 <div>ISBN</div>
                 <div>{book.isbn13}</div>
               </div>

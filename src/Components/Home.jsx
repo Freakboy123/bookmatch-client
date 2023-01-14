@@ -27,7 +27,13 @@ const Home = () => {
           >
             Find the books for you!
           </Link>
-          <img src={HomeBg} className="h-[400px] mt-10 drop-shadow-lg" />
+          <div>
+            <img
+              src={HomeBg}
+              alt="books"
+              className="w-[800px] mt-10 drop-shadow-lg"
+            />
+          </div>
         </div>
       </div>
       <SavedList />
