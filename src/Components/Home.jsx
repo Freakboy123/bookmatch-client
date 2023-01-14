@@ -3,6 +3,7 @@ import "./Home.css";
 import HomeBg from "../images/home-bg.png";
 import { Link } from "react-router-dom";
 import SavedList from "./SavedList";
+import RecommendedBooks from "./RecommendedBooks";
 
 const Home = () => {
   return (
@@ -30,6 +31,7 @@ const Home = () => {
         </div>
       </div>
       <SavedList />
+      <RecommendedBooks />
     </div>
   );
 };
