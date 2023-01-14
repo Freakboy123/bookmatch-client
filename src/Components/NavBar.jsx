@@ -47,7 +47,7 @@ const NavBar = () => {
           <li className="px-5 py-5 hover:bg-slate-200">
             <a
               href="#gallery"
-              className=" text-black hover:rounded-lg hover:rounded-lg hover:bg-slate-200  hover:text-slate-900 "
+              className=" text-black hover:rounded-lg hover:bg-slate-200  hover:text-slate-900 "
             >
               Recommendations
             </a>
@@ -68,7 +68,7 @@ const NavBar = () => {
   if (width >= 750) {
     return (
       <nav className="font-Outfit flex items-center justify-between p-4">
-        <img src={Logo} className="h-[60px]" />
+        <img src={Logo} className="h-[60px]" alt="logo" />
         <ul className="flex pr-5">
           <li>
             <Link

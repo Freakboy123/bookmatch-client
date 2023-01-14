@@ -51,7 +51,7 @@ const BookPopup = ({ book }) => {
 };
 
 const SavedList = () => {
-  const [savedList, setSavedList] = useContext(SavedListContext);
+  const [savedList] = useContext(SavedListContext);
   const popupControl = useRef(null);
   const [bookOpened, setBookOpened] = useState(null);
   const handleCloseClick = () => {

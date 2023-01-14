@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { useRef, useState, useContext } from "react";
 import "./Quiz.css";
 import { RecommendationsContext, UserContext } from "../App";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
   const likes = [];
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const navigate = useNavigate();
   const [recommended, setRecommended] = useContext(RecommendationsContext);
   const [suggestions, setSuggestions] = useState([]);
